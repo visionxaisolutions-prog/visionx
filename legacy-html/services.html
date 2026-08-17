@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services & Pricing — VisionXAI</title>
+<meta name="description" content="Website, photography and videography packages from VisionXAI — Essential, Growth and Premium plans for every stage of growth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --primary:#FF6A00; --primary-light:#FFB36B; --primary-soft:#FFE6D6; --accent-dark:#E65100;
+  --grad-a:#FF8A33; --grad-b:#FF6A00;
+  --bg:#FFF7F2; --surface:#FFFFFF; --surface-soft:#FFF2EB; --surface-hover:#FFEDE2;
+  --text:#1A1A1A; --gray-dark:#4B4B4B; --gray-med:#8F8F8F; --gray-light:#D9D9D9;
+  --radius:18px; --maxw:1280px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
+body{margin:0; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+h1,h2,h3,.brand{font-family:'Poppins',sans-serif;}
+a{color:inherit; text-decoration:none;}
+img,svg{display:block; max-width:100%;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px; position:relative;}
+:focus-visible{outline:2px solid var(--accent-dark); outline-offset:3px; border-radius:4px;}
+
+header{position:sticky; top:0; z-index:100; background:rgba(255,247,242,0.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--gray-light);}
+.nav-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+.brand{font-weight:800; font-size:21px; letter-spacing:0.5px; color:var(--text); display:flex; flex-direction:column; line-height:1.05;}
+.brand .name{white-space:nowrap;}
+.brand .x{color:var(--primary);}
+.brand small{font-family:'Inter',sans-serif; font-size:9px; font-weight:600; letter-spacing:3px; color:var(--gray-med); margin-top:3px;}
+nav.links{display:flex; gap:30px; align-items:center; font-size:15px; font-weight:600; letter-spacing:0.3px;}
+nav.links a{color:var(--gray-dark); padding-bottom:4px; border-bottom:2px solid transparent; transition:color .2s, border-color .2s;}
+nav.links a:hover{color:var(--primary);}
+nav.links a.active{color:var(--primary); border-color:var(--primary);}
+.btn{display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:700; letter-spacing:0.4px; padding:14px 26px; border-radius:10px; cursor:pointer; border:none; transition:transform .18s ease, box-shadow .18s ease, background .18s ease; white-space:nowrap;}
+.btn-primary{background:linear-gradient(135deg,var(--grad-a),var(--grad-b)); color:#fff; border:1px solid transparent; box-shadow:0 8px 20px -8px rgba(255,106,0,0.55);}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(255,106,0,0.6);}
+.btn-outline{background:transparent; color:var(--text); border:1.5px solid var(--gray-light);}
+.btn-outline:hover{border-color:var(--primary); color:var(--primary); transform:translateY(-2px);}
+.btn-outline.on-dark{color:#fff; border-color:rgba(255,255,255,0.5);}
+.btn-outline.on-dark:hover{border-color:#fff; color:#fff; background:rgba(255,255,255,0.08);}
+.nav-cta{font-size:14.5px; padding:12px 22px; border:1.5px solid var(--primary); color:var(--primary); border-radius:10px; font-weight:700;}
+.nav-cta:hover{background:var(--primary); color:#fff;}
+.menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+.menu-toggle span{display:block; width:24px; height:2px; background:var(--text); margin:5px 0; border-radius:2px;}
+
+/* Generic page hero (no globe) used on inner pages */
+.page-hero{position:relative; padding:64px 0 56px; overflow:hidden;}
+.page-hero .decor{position:absolute; top:-40px; right:-60px; width:520px; opacity:0.9; z-index:0; pointer-events:none;}
+.page-hero .decor svg{width:100%; height:auto;}
+.page-hero-content{position:relative; z-index:2; max-width:680px;}
+.eyebrow{color:var(--primary); font-weight:700; font-size:14px; letter-spacing:1.4px; text-transform:uppercase; margin-bottom:16px;}
+h1.headline{font-size:clamp(36px,4.6vw,56px); font-weight:800; line-height:1.1; letter-spacing:-1px; margin:0 0 20px;}
+h1.headline .accent{color:var(--primary);}
+.sub{font-size:18px; line-height:1.65; color:var(--gray-dark); max-width:560px; margin:0 0 8px;}
+.hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-top:26px;}
+
+/* Feature-card grid (reused on Home) */
+.feature-card{position:relative; z-index:4; background:var(--surface); border-radius:24px; box-shadow:0 40px 80px -30px rgba(230,81,0,0.22), 0 4px 20px rgba(0,0,0,0.04); display:grid; grid-template-columns:repeat(4,1fr); padding:8px;}
+.feature{padding:30px 26px; border-right:1px solid var(--gray-light); transition:background .2s; border-radius:16px;}
+.feature:last-child{border-right:none;}
+.feature:hover{background:var(--surface-soft);}
+.feature .icon{width:46px; height:46px; border-radius:11px; border:1.5px solid var(--primary-soft); background:var(--surface-soft); display:flex; align-items:center; justify-content:center; margin-bottom:16px; color:var(--primary);}
+.feature h3{font-size:17.5px; font-weight:700; margin:0 0 9px;}
+.feature p{font-size:14.5px; line-height:1.6; color:var(--gray-med); margin:0;}
+
+.pulse{animation:pulse 2.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.55; transform:scale(1.6);}}
+@media (prefers-reduced-motion: reduce){.pulse{animation:none;} *{scroll-behavior:auto !important;}}
+
+/* Section utility */
+.section{padding:70px 0;}
+.section-head{max-width:640px; margin:0 0 44px;}
+.section-head .eyebrow{margin-bottom:14px;}
+.section-head h2{font-size:clamp(28px,3.2vw,38px); font-weight:800; letter-spacing:-0.5px; margin:0 0 14px; line-height:1.15;}
+.section-head p{font-size:16.5px; color:var(--gray-dark); line-height:1.6; margin:0;}
+
+/* CTA band */
+.cta-band{background:linear-gradient(135deg,#FFF2EB,#FFE6D6); border:1px solid var(--primary-soft); border-radius:24px; padding:50px 48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+.cta-band h3{font-size:26px; font-weight:800; margin:0 0 6px;}
+.cta-band p{margin:0; color:var(--gray-dark); font-size:15.5px;}
+
+footer{margin-top:64px; border-top:1px solid var(--gray-light); padding:26px 0; position:relative; z-index:2; background:var(--bg);}
+.footer-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+.footer-row p{font-size:13px; color:var(--gray-med); margin:0;}
+.socials{display:flex; gap:10px;}
+.socials a{width:36px; height:36px; border-radius:9px; border:1.5px solid var(--primary); color:var(--primary); display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s;}
+.socials a:hover{background:var(--primary); color:#fff;}
+
+@media (max-width:980px){
+  .page-hero .decor{width:360px; top:-20px; right:-100px; opacity:0.6;}
+  .feature-card{grid-template-columns:repeat(2,1fr);}
+  .feature{border-right:1px solid var(--gray-light);}
+  .feature:nth-child(2n){border-right:none;}
+  .feature:nth-child(n+3){border-top:1px solid var(--gray-light);}
+  .cta-band{padding:36px 30px;}
+}
+@media (max-width:760px){
+  nav.links{position:fixed; inset:64px 16px auto 16px; background:var(--surface); border:1px solid var(--gray-light); border-radius:14px; padding:18px; flex-direction:column; align-items:flex-start; gap:14px; box-shadow:0 20px 40px -20px rgba(0,0,0,0.25); display:none;}
+  nav.links.open{display:flex;}
+  .menu-toggle{display:block;}
+  .nav-cta{display:none;}
+  .wrap{padding:0 20px;}
+  .feature-card{grid-template-columns:1fr;}
+  .feature{border-right:none !important; border-top:1px solid var(--gray-light);}
+  .feature:first-child{border-top:none;}
+  .page-hero{padding:44px 0 36px;}
+  .page-hero .decor{display:none;}
+  .section{padding:48px 0;}
+}
+
+
+.page-hero{padding-bottom:20px;}
+.page-hero .decor{top:-60px; right:-140px; width:640px; transform:scaleX(-1);}
+
+.pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:10px;}
+.price-card{background:var(--surface); border:1.5px solid var(--gray-light); border-radius:22px; padding:34px 30px; position:relative; display:flex; flex-direction:column;}
+.price-card.popular{border-color:var(--primary); box-shadow:0 30px 60px -30px rgba(230,81,0,0.35); transform:translateY(-6px);}
+.ribbon-clip{position:absolute; inset:0; overflow:hidden; border-radius:22px; pointer-events:none;}
+.ribbon{position:absolute; top:22px; right:-38px; transform:rotate(45deg); background:var(--primary); color:#fff; font-size:11px; font-weight:800; letter-spacing:1.5px; padding:6px 42px;}
+.price-card h3{font-size:14px; font-weight:800; letter-spacing:2px; color:var(--primary); margin:0 0 20px; text-transform:uppercase;}
+.plan-list{list-style:none; margin:0 0 26px; padding:0; display:flex; flex-direction:column; gap:12px; flex:1;}
+.plan-list li{display:flex; align-items:flex-start; gap:10px; font-size:14.5px; color:var(--gray-dark);}
+.plan-list li .tick{width:20px; height:20px; border-radius:50%; background:var(--primary-soft); color:var(--accent-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;}
+.price-row{border-top:1px dashed var(--gray-light); padding-top:20px; margin-top:auto;}
+.price-old{color:var(--gray-med); text-decoration:line-through; font-size:15px; margin-right:10px;}
+.discount-badge{display:inline-block; font-size:11.5px; font-weight:800; color:var(--accent-dark); background:var(--primary-soft); border:1px solid var(--primary-light); border-radius:7px; padding:3px 8px; vertical-align:middle;}
+.price-new{font-size:34px; font-weight:800; margin:8px 0 2px; letter-spacing:-0.5px;}
+.price-unit{font-size:13px; color:var(--gray-med); margin-bottom:18px;}
+.price-card .btn{width:100%; justify-content:center;}
+.price-note{text-align:center; font-size:13.5px; color:var(--gray-med); margin-top:26px;}
+.price-note .gst{display:inline-flex; align-items:center; gap:6px; margin-left:14px;}
+
+.addons{margin-top:12px;}
+.addon-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+.addon-chip{display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--gray-light); border-radius:14px; padding:16px 18px;}
+.addon-chip .icon{width:36px; height:36px; border-radius:9px; background:var(--surface-soft); color:var(--primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.addon-chip .txt strong{display:block; font-size:14.5px; font-weight:700;}
+.addon-chip .txt span{font-size:12.5px; color:var(--gray-med);}
+
+@media (max-width:980px){
+  .pricing-grid{grid-template-columns:1fr; max-width:440px; margin-left:auto; margin-right:auto;}
+  .price-card.popular{transform:none;}
+  .addon-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .addon-grid{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav-row">
+    <a href="index.html" class="brand">
+      <span class="name">VISION<span class="x">XAI</span></span>
+      <small>— MIND TO MEDIA —</small>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="contact.html" class="btn nav-cta">Let's Connect →</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="decor"><svg viewBox="0 0 1400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<path d="M 0.0,61.5 L23.3,63.0 L46.7,64.6 L70.0,66.1 L93.3,67.7 L116.7,69.2 L140.0,70.7 L163.3,72.1 L186.7,73.5 L210.0,74.9 L233.3,76.2 L256.7,77.5 L280.0,78.7 L303.3,79.8 L326.7,80.9 L350.0,81.9 L373.3,82.8 L396.7,83.7 L420.0,84.5 L443.3,85.1 L466.7,85.7 L490.0,86.3 L513.3,86.7 L536.7,87.0 L560.0,87.3 L583.3,87.4 L606.7,87.5 L630.0,87.4 L653.3,87.3 L676.7,87.1 L700.0,86.8 L723.3,86.3 L746.7,85.8 L770.0,85.3 L793.3,84.6 L816.7,83.8 L840.0,83.0 L863.3,82.1 L886.7,81.1 L910.0,80.0 L933.3,78.9 L956.7,77.7 L980.0,76.4 L1003.3,75.1 L1026.7,73.8 L1050.0,72.4 L1073.3,70.9 L1096.7,69.4 L1120.0,67.9 L1143.3,66.4 L1166.7,64.9 L1190.0,63.3 L1213.3,61.7 L1236.7,60.2 L1260.0,58.6 L1283.3,57.1 L1306.7,55.5 L1330.0,54.0 L1353.3,52.5 L1376.7,51.1 L1400.0,49.7" fill="none" stroke="#FF6A00" stroke-width="1.60" stroke-opacity="0.50"/><path d="M 0.0,90.1 L23.3,91.7 L46.7,93.2 L70.0,94.6 L93.3,96.0 L116.7,97.3 L140.0,98.5 L163.3,99.6 L186.7,100.7 L210.0,101.6 L233.3,102.4 L256.7,103.2 L280.0,103.8 L303.3,104.3 L326.7,104.7 L350.0,105.0 L373.3,105.2 L396.7,105.2 L420.0,105.2 L443.3,105.0 L466.7,104.7 L490.0,104.3 L513.3,103.8 L536.7,103.2 L560.0,102.5 L583.3,101.7 L606.7,100.7 L630.0,99.7 L653.3,98.6 L676.7,97.4 L700.0,96.1 L723.3,94.8 L746.7,93.3 L770.0,91.8 L793.3,90.3 L816.7,88.6 L840.0,87.0 L863.3,85.3 L886.7,83.5 L910.0,81.7 L933.3,79.9 L956.7,78.1 L980.0,76.3 L1003.3,74.5 L1026.7,72.7 L1050.0,70.9 L1073.3,69.1 L1096.7,67.3 L1120.0,65.6 L1143.3,63.9 L1166.7,62.3 L1190.0,60.7 L1213.3,59.2 L1236.7,57.8 L1260.0,56.4 L1283.3,55.1 L1306.7,53.9 L1330.0,52.8 L1353.3,51.8 L1376.7,50.8 L1400.0,50.0" fill="none" stroke="#FFB36B" stroke-width="1.48" stroke-opacity="0.45"/><path d="M 0.0,129.3 L23.3,130.3 L46.7,131.3 L70.0,132.1 L93.3,132.8 L116.7,133.4 L140.0,133.8 L163.3,134.1 L186.7,134.3 L210.0,134.3 L233.3,134.2 L256.7,134.0 L280.0,133.6 L303.3,133.1 L326.7,132.4 L350.0,131.7 L373.3,130.8 L396.7,129.8 L420.0,128.6 L443.3,127.4 L466.7,126.0 L490.0,124.5 L513.3,123.0 L536.7,121.3 L560.0,119.6 L583.3,117.8 L606.7,116.0 L630.0,114.0 L653.3,112.1 L676.7,110.1 L700.0,108.0 L723.3,105.9 L746.7,103.8 L770.0,101.8 L793.3,99.7 L816.7,97.6 L840.0,95.5 L863.3,93.5 L886.7,91.5 L910.0,89.6 L933.3,87.7 L956.7,85.8 L980.0,84.1 L1003.3,82.4 L1026.7,80.8 L1050.0,79.3 L1073.3,77.9 L1096.7,76.6 L1120.0,75.4 L1143.3,74.3 L1166.7,73.4 L1190.0,72.6 L1213.3,71.9 L1236.7,71.3 L1260.0,70.8 L1283.3,70.5 L1306.7,70.4 L1330.0,70.3 L1353.3,70.4 L1376.7,70.7 L1400.0,71.1" fill="none" stroke="#FF6A00" stroke-width="1.36" stroke-opacity="0.40"/><path d="M 0.0,163.7 L23.3,163.8 L46.7,163.7 L70.0,163.5 L93.3,163.1 L116.7,162.5 L140.0,161.8 L163.3,160.9 L186.7,159.9 L210.0,158.8 L233.3,157.5 L256.7,156.0 L280.0,154.5 L303.3,152.8 L326.7,151.0 L350.0,149.1 L373.3,147.1 L396.7,145.1 L420.0,142.9 L443.3,140.7 L466.7,138.4 L490.0,136.1 L513.3,133.8 L536.7,131.4 L560.0,129.0 L583.3,126.7 L606.7,124.3 L630.0,121.9 L653.3,119.6 L676.7,117.3 L700.0,115.1 L723.3,113.0 L746.7,110.9 L770.0,108.9 L793.3,107.0 L816.7,105.1 L840.0,103.4 L863.3,101.9 L886.7,100.4 L910.0,99.1 L933.3,97.9 L956.7,96.8 L980.0,95.9 L1003.3,95.2 L1026.7,94.6 L1050.0,94.2 L1073.3,93.9 L1096.7,93.8 L1120.0,93.8 L1143.3,94.0 L1166.7,94.4 L1190.0,94.9 L1213.3,95.6 L1236.7,96.5 L1260.0,97.5 L1283.3,98.6 L1306.7,99.9 L1330.0,101.3 L1353.3,102.8 L1376.7,104.5 L1400.0,106.2" fill="none" stroke="#FFB36B" stroke-width="1.24" stroke-opacity="0.35"/><path d="M 0.0,183.9 L23.3,182.7 L46.7,181.4 L70.0,179.8 L93.3,178.2 L116.7,176.3 L140.0,174.4 L163.3,172.3 L186.7,170.1 L210.0,167.8 L233.3,165.4 L256.7,162.9 L280.0,160.4 L303.3,157.8 L326.7,155.1 L350.0,152.5 L373.3,149.8 L396.7,147.1 L420.0,144.4 L443.3,141.8 L466.7,139.2 L490.0,136.6 L513.3,134.1 L536.7,131.7 L560.0,129.4 L583.3,127.1 L606.7,125.0 L630.0,123.0 L653.3,121.1 L676.7,119.4 L700.0,117.8 L723.3,116.4 L746.7,115.2 L770.0,114.1 L793.3,113.2 L816.7,112.5 L840.0,111.9 L863.3,111.6 L886.7,111.4 L910.0,111.4 L933.3,111.6 L956.7,112.0 L980.0,112.6 L1003.3,113.4 L1026.7,114.3 L1050.0,115.5 L1073.3,116.8 L1096.7,118.2 L1120.0,119.8 L1143.3,121.6 L1166.7,123.5 L1190.0,125.5 L1213.3,127.7 L1236.7,129.9 L1260.0,132.3 L1283.3,134.7 L1306.7,137.3 L1330.0,139.8 L1353.3,142.5 L1376.7,145.1 L1400.0,147.8" fill="none" stroke="#FF6A00" stroke-width="1.12" stroke-opacity="0.30"/><path d="M 0.0,194.3 L23.3,191.8 L46.7,189.3 L70.0,186.6 L93.3,183.8 L116.7,180.9 L140.0,178.0 L163.3,175.0 L186.7,172.0 L210.0,169.0 L233.3,166.0 L256.7,163.1 L280.0,160.1 L303.3,157.2 L326.7,154.4 L350.0,151.7 L373.3,149.0 L396.7,146.5 L420.0,144.1 L443.3,141.8 L466.7,139.7 L490.0,137.7 L513.3,135.9 L536.7,134.3 L560.0,132.9 L583.3,131.7 L606.7,130.7 L630.0,129.9 L653.3,129.3 L676.7,128.9 L700.0,128.8 L723.3,128.9 L746.7,129.1 L770.0,129.7 L793.3,130.4 L816.7,131.3 L840.0,132.5 L863.3,133.8 L886.7,135.3 L910.0,137.1 L933.3,139.0 L956.7,141.0 L980.0,143.2 L1003.3,145.6 L1026.7,148.1 L1050.0,150.7 L1073.3,153.4 L1096.7,156.2 L1120.0,159.1 L1143.3,162.0 L1166.7,165.0 L1190.0,168.0 L1213.3,171.0 L1236.7,174.0 L1260.0,176.9 L1283.3,179.9 L1306.7,182.8 L1330.0,185.6 L1353.3,188.3 L1376.7,190.9 L1400.0,193.4" fill="none" stroke="#FFB36B" stroke-width="1.00" stroke-opacity="0.25"/><path d="M 0.0,198.3 L23.3,195.0 L46.7,191.6 L70.0,188.3 L93.3,185.0 L116.7,181.7 L140.0,178.5 L163.3,175.3 L186.7,172.3 L210.0,169.4 L233.3,166.6 L256.7,163.9 L280.0,161.5 L303.3,159.1 L326.7,157.0 L350.0,155.1 L373.3,153.4 L396.7,151.9 L420.0,150.7 L443.3,149.7 L466.7,148.9 L490.0,148.4 L513.3,148.1 L536.7,148.1 L560.0,148.3 L583.3,148.8 L606.7,149.6 L630.0,150.6 L653.3,151.8 L676.7,153.2 L700.0,154.9 L723.3,156.8 L746.7,158.9 L770.0,161.2 L793.3,163.7 L816.7,166.3 L840.0,169.1 L863.3,172.0 L886.7,175.0 L910.0,178.1 L933.3,181.3 L956.7,184.6 L980.0,187.9 L1003.3,191.3 L1026.7,194.6 L1050.0,197.9 L1073.3,201.2 L1096.7,204.4 L1120.0,207.6 L1143.3,210.7 L1166.7,213.7 L1190.0,216.5 L1213.3,219.2 L1236.7,221.8 L1260.0,224.1 L1283.3,226.3 L1306.7,228.3 L1330.0,230.1 L1353.3,231.7 L1376.7,233.0 L1400.0,234.1" fill="none" stroke="#FF6A00" stroke-width="0.88" stroke-opacity="0.20"/>
+<circle cx="349.4" cy="90.8" r="1.25" fill="#FF6A00" fill-opacity="0.47"/><circle cx="419.5" cy="79.4" r="1.14" fill="#FF6A00" fill-opacity="0.35"/><circle cx="485.5" cy="81.9" r="1.52" fill="#FF6A00" fill-opacity="0.42"/><circle cx="564.8" cy="80.0" r="1.22" fill="#FF6A00" fill-opacity="0.19"/><circle cx="635.9" cy="81.6" r="0.82" fill="#FF6A00" fill-opacity="0.49"/><circle cx="777.4" cy="86.0" r="1.28" fill="#FF6A00" fill-opacity="0.22"/><circle cx="1117.8" cy="61.3" r="0.75" fill="#FF6A00" fill-opacity="0.17"/><circle cx="1191.6" cy="53.4" r="1.28" fill="#FF6A00" fill-opacity="0.27"/><circle cx="1265.1" cy="58.2" r="0.92" fill="#FF6A00" fill-opacity="0.32"/><circle cx="1407.6" cy="40.1" r="1.35" fill="#FF6A00" fill-opacity="0.45"/><circle cx="71.3" cy="84.8" r="0.65" fill="#FF6A00" fill-opacity="0.21"/><circle cx="214.1" cy="110.2" r="1.54" fill="#FF6A00" fill-opacity="0.27"/><circle cx="280.4" cy="109.3" r="0.71" fill="#FF6A00" fill-opacity="0.41"/><circle cx="497.1" cy="96.1" r="0.94" fill="#FF6A00" fill-opacity="0.36"/><circle cx="636.8" cy="100.6" r="0.91" fill="#FF6A00" fill-opacity="0.26"/><circle cx="693.3" cy="89.1" r="1.29" fill="#FF6A00" fill-opacity="0.50"/><circle cx="762.8" cy="101.6" r="1.13" fill="#FF6A00" fill-opacity="0.29"/><circle cx="841.5" cy="93.5" r="1.06" fill="#FF6A00" fill-opacity="0.30"/><circle cx="916.7" cy="72.4" r="1.09" fill="#FF6A00" fill-opacity="0.44"/><circle cx="983.7" cy="85.3" r="1.23" fill="#FF6A00" fill-opacity="0.43"/><circle cx="1049.0" cy="63.8" r="1.44" fill="#FF6A00" fill-opacity="0.25"/><circle cx="1128.0" cy="72.7" r="1.58" fill="#FF6A00" fill-opacity="0.31"/><circle cx="1193.7" cy="60.3" r="0.89" fill="#FF6A00" fill-opacity="0.29"/><circle cx="1258.0" cy="66.2" r="1.56" fill="#FF6A00" fill-opacity="0.37"/><circle cx="1327.4" cy="44.6" r="0.87" fill="#FF6A00" fill-opacity="0.42"/><circle cx="353.3" cy="127.3" r="1.09" fill="#FF6A00" fill-opacity="0.42"/><circle cx="497.1" cy="127.5" r="1.18" fill="#FF6A00" fill-opacity="0.15"/><circle cx="632.7" cy="113.3" r="1.42" fill="#FF6A00" fill-opacity="0.38"/><circle cx="772.3" cy="106.5" r="1.43" fill="#FF6A00" fill-opacity="0.27"/><circle cx="1335.4" cy="79.1" r="1.08" fill="#FF6A00" fill-opacity="0.39"/><circle cx="4.5" cy="165.3" r="1.27" fill="#FF6A00" fill-opacity="0.30"/><circle cx="344.6" cy="147.9" r="1.25" fill="#FF6A00" fill-opacity="0.23"/><circle cx="559.5" cy="123.6" r="0.65" fill="#FF6A00" fill-opacity="0.20"/><circle cx="624.9" cy="115.8" r="0.64" fill="#FF6A00" fill-opacity="0.31"/><circle cx="701.8" cy="116.9" r="0.84" fill="#FF6A00" fill-opacity="0.47"/><circle cx="768.5" cy="104.4" r="1.01" fill="#FF6A00" fill-opacity="0.19"/><circle cx="902.6" cy="101.3" r="0.69" fill="#FF6A00" fill-opacity="0.34"/><circle cx="981.3" cy="105.1" r="1.42" fill="#FF6A00" fill-opacity="0.30"/><circle cx="1184.3" cy="96.9" r="1.16" fill="#FF6A00" fill-opacity="0.49"/><circle cx="1406.3" cy="96.3" r="0.71" fill="#FF6A00" fill-opacity="0.35"/><circle cx="2.1" cy="191.8" r="0.98" fill="#FF6A00" fill-opacity="0.30"/><circle cx="66.7" cy="189.3" r="0.98" fill="#FF6A00" fill-opacity="0.49"/><circle cx="287.7" cy="160.3" r="1.02" fill="#FF6A00" fill-opacity="0.26"/><circle cx="416.6" cy="144.0" r="0.72" fill="#FF6A00" fill-opacity="0.37"/><circle cx="486.7" cy="142.2" r="1.43" fill="#FF6A00" fill-opacity="0.15"/><circle cx="637.0" cy="128.7" r="0.85" fill="#FF6A00" fill-opacity="0.24"/><circle cx="707.8" cy="113.7" r="1.21" fill="#FF6A00" fill-opacity="0.32"/><circle cx="984.2" cy="108.6" r="1.13" fill="#FF6A00" fill-opacity="0.27"/><circle cx="1050.5" cy="114.8" r="0.96" fill="#FF6A00" fill-opacity="0.41"/><circle cx="1186.0" cy="124.7" r="1.52" fill="#FF6A00" fill-opacity="0.46"/><circle cx="1334.5" cy="138.4" r="1.18" fill="#FF6A00" fill-opacity="0.40"/><circle cx="68.3" cy="193.6" r="0.80" fill="#FF6A00" fill-opacity="0.25"/><circle cx="215.4" cy="172.9" r="1.03" fill="#FF6A00" fill-opacity="0.25"/><circle cx="419.7" cy="145.1" r="1.10" fill="#FF6A00" fill-opacity="0.27"/><circle cx="491.4" cy="144.0" r="0.67" fill="#FF6A00" fill-opacity="0.23"/><circle cx="773.6" cy="139.2" r="1.60" fill="#FF6A00" fill-opacity="0.40"/><circle cx="845.5" cy="126.8" r="1.25" fill="#FF6A00" fill-opacity="0.48"/><circle cx="976.7" cy="151.6" r="0.75" fill="#FF6A00" fill-opacity="0.36"/><circle cx="1044.6" cy="153.1" r="0.64" fill="#FF6A00" fill-opacity="0.19"/><circle cx="1113.2" cy="150.2" r="1.18" fill="#FF6A00" fill-opacity="0.41"/><circle cx="1258.9" cy="173.2" r="1.20" fill="#FF6A00" fill-opacity="0.32"/><circle cx="1392.9" cy="197.4" r="0.75" fill="#FF6A00" fill-opacity="0.37"/><circle cx="210.8" cy="164.5" r="1.35" fill="#FF6A00" fill-opacity="0.33"/><circle cx="275.8" cy="158.9" r="1.34" fill="#FF6A00" fill-opacity="0.21"/><circle cx="492.7" cy="140.2" r="0.72" fill="#FF6A00" fill-opacity="0.36"/><circle cx="566.0" cy="147.9" r="0.92" fill="#FF6A00" fill-opacity="0.43"/><circle cx="633.6" cy="141.6" r="0.75" fill="#FF6A00" fill-opacity="0.48"/><circle cx="763.9" cy="170.6" r="1.27" fill="#FF6A00" fill-opacity="0.44"/><circle cx="842.0" cy="166.2" r="0.84" fill="#FF6A00" fill-opacity="0.27"/><circle cx="978.2" cy="180.6" r="1.43" fill="#FF6A00" fill-opacity="0.38"/><circle cx="1125.6" cy="208.0" r="1.19" fill="#FF6A00" fill-opacity="0.35"/><circle cx="1253.6" cy="214.8" r="0.80" fill="#FF6A00" fill-opacity="0.16"/><circle cx="1404.2" cy="224.1" r="1.07" fill="#FF6A00" fill-opacity="0.46"/>
+</svg></div>
+    <div class="wrap">
+      <div class="page-hero-content">
+        <div class="eyebrow">Our Services</div>
+        <h1 class="headline">Plans Designed for Every Stage of <span class="accent">Your Growth.</span></h1>
+        <p class="sub">Simple, transparent and powerful plans to build your online presence and elevate your brand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:8px;">
+    <div class="wrap">
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <h3>Essential</h3>
+          <ul class="plan-list">
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Website</li>
+          </ul>
+          <div class="price-row">
+            <span class="price-old">₹16,400</span>
+            <span class="discount-badge">27% OFF</span>
+            <div class="price-new">₹11,999</div>
+            <div class="price-unit">/ one-time</div>
+            <a href="contact.html" class="btn btn-outline">Choose Plan</a>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <h3>Growth</h3>
+          <ul class="plan-list">
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Website</li>
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> UGC Videos &amp; Photos</li>
+          </ul>
+          <div class="price-row">
+            <span class="price-old">₹29,800</span>
+            <span class="discount-badge">33% OFF</span>
+            <div class="price-new">₹19,999</div>
+            <div class="price-unit">/ one-time</div>
+            <a href="contact.html" class="btn btn-outline">Choose Plan</a>
+          </div>
+        </div>
+
+        <div class="price-card popular">
+          <div class="ribbon-clip"><div class="ribbon">POPULAR</div></div>
+          <h3>Premium</h3>
+          <ul class="plan-list">
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Website</li>
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> 1 Free Service (Your Choice)</li>
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> 3D Property Tour</li>
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Product Photography</li>
+            <li><span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> UGC Videos / Social Media Presence</li>
+          </ul>
+          <div class="price-row">
+            <span class="price-old">₹83,300</span>
+            <span class="discount-badge">40% OFF</span>
+            <div class="price-new">₹49,999</div>
+            <div class="price-unit">/ one-time</div>
+            <a href="contact.html" class="btn btn-primary">Choose Plan</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="price-note">* All plans are one-time payment with no hidden charges.
+        <span class="gst"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg> Prices are including GST.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section addons" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Add-ons</div>
+        <h2>Need Something <span class="accent" style="color:var(--primary);">Extra?</span></h2>
+        <p>Build on any plan with focused add-ons — pick only what your project needs.</p>
+      </div>
+      <div class="addon-grid">
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M5 5l4 4M19 5l-4 4M5 19l4-4M19 19l-4-4"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></div><div class="txt"><strong>Drone Shots</strong><span>Aerial photo &amp; video coverage</span></div></div>
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="txt"><strong>Virtual Staging</strong><span>Digitally furnish empty spaces</span></div></div>
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div><div class="txt"><strong>Floor Plans</strong><span>2D/3D layouts for listings</span></div></div>
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><div class="txt"><strong>Social Media Retainer</strong><span>Ongoing monthly content &amp; posting</span></div></div>
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L2 19l3 3 7.3-7.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/></svg></div><div class="txt"><strong>Website Maintenance</strong><span>Updates, backups &amp; monitoring</span></div></div>
+        <div class="addon-chip"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="txt"><strong>Rush Delivery</strong><span>Priority turnaround on request</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h3>Not sure which plan fits?</h3>
+          <p>Tell us about your project and we'll point you to the right package.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Let's Talk →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap footer-row">
+    <p>© 2026 VisionXAI. All rights reserved.</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/visionxaisolutions?igsh=MXJpamh4Mjd5a2hlcw==" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5.98 5.98 0 0 1 16 8z"/><rect x="2" y="8" width="4" height="13"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="mailto:visionxaisolutions@gmail.com" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>
