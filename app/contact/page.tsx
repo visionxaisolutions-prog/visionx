@@ -67,7 +67,13 @@ const CONTACT_INFO = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: PageProps<"/contact">) {
+  const params = await searchParams;
+  const planParam = params.plan;
+  const plan = Array.isArray(planParam) ? planParam[0] : planParam;
+
   return (
     <>
       <section className="page-hero" style={{ paddingBottom: 10 }}>
@@ -113,7 +119,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <ContactForm />
+          <ContactForm initialPlan={plan} />
         </div>
       </section>
     </>

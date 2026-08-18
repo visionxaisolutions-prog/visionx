@@ -3,6 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Menu } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetFooter,
+} from "@/components/ui/sheet";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -25,13 +36,12 @@ export default function Header() {
           </span>
           <small>— MIND TO MEDIA —</small>
         </Link>
-        <nav className={`links${open ? " open" : ""}`} id="navLinks">
+        <nav className="links">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={pathname === link.href ? "active" : undefined}
-              onClick={() => setOpen(false)}
             >
               {link.label}
             </Link>
@@ -41,17 +51,46 @@ export default function Header() {
           <Link href="/contact" className="btn nav-cta">
             Let&apos;s Connect →
           </Link>
-          <button
-            className="menu-toggle"
-            id="menuToggle"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="menu-toggle"
+                aria-label="Toggle menu"
+              >
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle className="brand">
+                  VISION<span className="x">XAI</span>
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="mobile-nav-links">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={pathname === link.href ? "active" : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              <SheetFooter>
+                <Link
+                  href="/contact"
+                  className="btn btn-primary"
+                  onClick={() => setOpen(false)}
+                >
+                  Let&apos;s Connect →
+                </Link>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

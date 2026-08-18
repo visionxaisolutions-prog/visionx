@@ -3,7 +3,10 @@ import { Poppins, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,13 +36,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${poppins.variable} ${inter.variable}`}
+      className={cn(poppins.variable, inter.variable, "font-sans")}
     >
       <body>
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
         <ScrollReveal />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

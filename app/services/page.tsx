@@ -11,7 +11,13 @@ export const metadata: Metadata = {
 const PLANS = [
   {
     name: "Essential",
-    features: ["Website"],
+    features: [
+      "Website",
+      "Mobile Responsive Design",
+      "Basic SEO Setup",
+      "Contact Form Integration",
+      "1 Revision Round",
+    ],
     oldPrice: "₹16,400",
     discount: "27% OFF",
     price: "₹11,999",
@@ -19,7 +25,13 @@ const PLANS = [
   },
   {
     name: "Growth",
-    features: ["Website", "UGC Videos & Photos"],
+    features: [
+      "Website",
+      "UGC Videos & Photos",
+      "Mobile Responsive Design",
+      "Basic SEO Setup",
+      "2 Revision Rounds",
+    ],
     oldPrice: "₹29,800",
     discount: "33% OFF",
     price: "₹19,999",
@@ -159,7 +171,7 @@ export default function ServicesPage() {
                   <div className="price-new">{plan.price}</div>
                   <div className="price-unit">/ one-time</div>
                   <Link
-                    href="/contact"
+                    href={`/contact?plan=${encodeURIComponent(plan.name)}`}
                     className={`btn ${plan.popular ? "btn-primary" : "btn-outline"}`}
                   >
                     Choose Plan

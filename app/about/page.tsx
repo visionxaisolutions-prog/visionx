@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EmailIcon, UserIcon } from "@/components/icons";
+import { UserIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -69,14 +69,6 @@ export default function AboutPage() {
                   <h3>{member.name}</h3>
                   <div className="role">{member.role}</div>
                   <p className="bio">{member.bio}</p>
-                  <div className="team-links">
-                    <a
-                      href="mailto:visionxaisolutions@gmail.com"
-                      aria-label="Email"
-                    >
-                      <EmailIcon />
-                    </a>
-                  </div>
                 </div>
               </div>
             ))}
