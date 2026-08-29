@@ -27,6 +27,17 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
 const SITE_DESCRIPTION =
   "VisionXAI is a Bengaluru-based creative digital studio building websites, brands and digital content that connect, engage and grow.";
 
+const ORGANIZATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "VisionXAI",
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  sameAs: [
+    "https://www.instagram.com/visionxaisolutions?igsh=MXJpamh4Mjd5a2hlcw==",
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -34,6 +45,9 @@ export const metadata: Metadata = {
     default: "VisionXAI — Mind to Media",
   },
   description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "VisionXAI — Mind to Media",
     description: SITE_DESCRIPTION,
@@ -57,6 +71,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn(poppins.variable, inter.variable, "font-sans")}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+        />
         <Header />
         <main>{children}</main>
         <Footer />

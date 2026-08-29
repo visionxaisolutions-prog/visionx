@@ -4,6 +4,52 @@ import { EmailIcon, InstagramIcon, WhatsAppIcon } from "@/components/icons";
 export default function Footer() {
   return (
     <footer>
+      <div className="wrap footer-grid">
+        <div className="footer-col footer-brand">
+          <div className="brand">
+            <span className="name">
+              VISION<span className="x">XAI</span>
+            </span>
+            <small>— MIND TO MEDIA —</small>
+          </div>
+          <p>Websites · Media · AI · Automation</p>
+        </div>
+
+        <div className="footer-col">
+          <h3>Explore</h3>
+          <Link href="/">Home</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+        </div>
+
+        <div className="footer-col">
+          <h3>Services</h3>
+          <Link href="/services">Web Development</Link>
+          <Link href="/services">UGC &amp; Content</Link>
+          <Link href="/services">Photography</Link>
+          <Link href="/services">3D Experiences</Link>
+          <Link href="/services">Automation</Link>
+          <Link href="/services">AI Solutions</Link>
+        </div>
+
+        <div className="footer-col">
+          <h3>Connect</h3>
+          <a href="https://wa.me/917676520441" target="_blank" rel="noopener">
+            WhatsApp
+          </a>
+          <a href="mailto:visionxaisolutions@gmail.com">Email</a>
+          <a
+            href="https://www.instagram.com/visionxaisolutions?igsh=MXJpamh4Mjd5a2hlcw=="
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+
       <div className="wrap footer-row">
         <p>© 2026 VisionXAI. All rights reserved.</p>
         <div className="socials">

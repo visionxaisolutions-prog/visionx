@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Meet the team behind VisionXAI — a Bengaluru-based creative digital studio turning ideas into digital experiences.",
+  alternates: { canonical: "/about" },
 };
 
 const TEAM = [
@@ -84,7 +85,7 @@ export default function AboutPage() {
               <p>We&apos;re always happy to talk through a new idea, big or small.</p>
             </div>
             <Link href="/contact" className="btn btn-primary">
-              Get In Touch →
+              Start a Project →
             </Link>
           </div>
         </div>

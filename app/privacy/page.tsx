@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How VisionXAI collects, uses and protects the personal information you share through our website.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

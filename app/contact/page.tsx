@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with VisionXAI — a Bengaluru-based creative digital studio for websites, photography and videography.",
+  alternates: { canonical: "/contact" },
 };
 
 const CONTACT_INFO = [

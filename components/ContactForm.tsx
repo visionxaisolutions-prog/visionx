@@ -5,7 +5,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
-import { contactFieldsSchema, type ContactFields } from "@/lib/contact-schema";
+import {
+  contactFieldsSchema,
+  SERVICE_OPTIONS,
+  BUDGET_OPTIONS,
+  type ContactFields,
+} from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,6 +28,7 @@ export default function ContactForm({
   const [honeypot, setHoneypot] = useState("");
   const nameErrorId = useId();
   const emailErrorId = useId();
+  const serviceErrorId = useId();
   const messageErrorId = useId();
 
   const form = useForm<ContactFields>({
@@ -30,6 +36,10 @@ export default function ContactForm({
     defaultValues: {
       name: "",
       email: "",
+      service: undefined,
+      business: "",
+      phone: "",
+      budget: "",
       message: initialPlan
         ? `Hi, I'm interested in the ${initialPlan} plan. `
         : "",
@@ -55,6 +65,10 @@ export default function ContactForm({
       form.reset({
         name: "",
         email: "",
+        service: undefined,
+        business: "",
+        phone: "",
+        budget: "",
         message: initialPlan
           ? `Hi, I'm interested in the ${initialPlan} plan. `
           : "",
@@ -165,6 +179,70 @@ export default function ContactForm({
             {...form.register("email")}
           />
           <FieldError id={emailErrorId} errors={[form.formState.errors.email]} />
+        </Field>
+        <Field data-invalid={!!form.formState.errors.service}>
+          <FieldLabel htmlFor="contactService">Service</FieldLabel>
+          <select
+            id="contactService"
+            className="select-field"
+            defaultValue=""
+            aria-invalid={!!form.formState.errors.service}
+            aria-describedby={
+              form.formState.errors.service ? serviceErrorId : undefined
+            }
+            {...form.register("service")}
+          >
+            <option value="" disabled>
+              Select a service
+            </option>
+            {SERVICE_OPTIONS.map((option) => (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          <FieldError id={serviceErrorId} errors={[form.formState.errors.service]} />
+        </Field>
+        <Field data-invalid={!!form.formState.errors.business}>
+          <FieldLabel htmlFor="contactBusiness">
+            Business / Brand <span className="optional-tag">(optional)</span>
+          </FieldLabel>
+          <Input
+            id="contactBusiness"
+            placeholder="Your company or brand name"
+            autoComplete="organization"
+            {...form.register("business")}
+          />
+        </Field>
+        <Field data-invalid={!!form.formState.errors.phone}>
+          <FieldLabel htmlFor="contactPhone">
+            Phone / WhatsApp <span className="optional-tag">(optional)</span>
+          </FieldLabel>
+          <Input
+            id="contactPhone"
+            type="tel"
+            placeholder="98765 43210"
+            autoComplete="tel"
+            {...form.register("phone")}
+          />
+        </Field>
+        <Field data-invalid={!!form.formState.errors.budget}>
+          <FieldLabel htmlFor="contactBudget">
+            Budget <span className="optional-tag">(optional)</span>
+          </FieldLabel>
+          <select
+            id="contactBudget"
+            className="select-field"
+            defaultValue=""
+            {...form.register("budget")}
+          >
+            <option value="">Prefer not to say</option>
+            {BUDGET_OPTIONS.map((option) => (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </Field>
         <Field data-invalid={!!form.formState.errors.message}>
           <FieldLabel htmlFor="contactMessage">Your Message</FieldLabel>

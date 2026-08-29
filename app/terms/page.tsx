@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
     "Terms and conditions for using the VisionXAI website and engaging our website, photography and videography services.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

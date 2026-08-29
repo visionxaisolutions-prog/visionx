@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
     "What cookies and local storage VisionXAI's website uses — and what we don't use.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {

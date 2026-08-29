@@ -2,78 +2,38 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { TickIcon, WhatsAppIcon, CartIcon } from "@/components/icons";
 import GlowCard from "@/components/GlowCard";
+import { PLANS } from "@/lib/data/packages";
 
 export const metadata: Metadata = {
   title: "Services & Pricing",
   description:
     "Website, photography and videography packages from VisionXAI — Essential, Growth, Premium and Custom Enterprise plans for every stage of growth.",
+  alternates: { canonical: "/services" },
 };
 
-type Plan = {
-  name: string;
-  features: string[];
-  oldPrice?: string;
-  discount?: string;
-  price?: string;
-  popular: boolean;
-  custom?: boolean;
-};
+// Comparison table is derived directly from PLANS' own feature lists so it
+// can never drift out of sync with the pricing cards above.
+const COMPARE_PLANS = PLANS.filter((plan) => !plan.custom);
 
-const PLANS: Plan[] = [
-  {
-    name: "Essential",
-    features: [
-      "Website",
-      "Mobile Responsive Design",
-      "Basic SEO Setup",
-      "Contact Form Integration",
-      "1 Revision Round",
-    ],
-    oldPrice: "₹16,400",
-    discount: "27% OFF",
-    price: "₹11,999",
-    popular: false,
-  },
-  {
-    name: "Growth",
-    features: [
-      "Website",
-      "UGC Videos & Photos",
-      "Mobile Responsive Design",
-      "Basic SEO Setup",
-      "2 Revision Rounds",
-    ],
-    oldPrice: "₹29,800",
-    discount: "33% OFF",
-    price: "₹19,999",
-    popular: false,
-  },
-  {
-    name: "Premium",
-    features: [
-      "Website",
-      "1 Free Service (Your Choice)",
-      "3D Property Tour",
-      "Product Photography",
-      "UGC Videos / Social Media Presence",
-    ],
-    oldPrice: "₹83,300",
-    discount: "40% OFF",
-    price: "₹49,999",
-    popular: true,
-  },
-  {
-    name: "Custom",
-    features: [
-      "Fully Tailored Scope",
-      "WhatsApp Business Automation",
-      "E-Commerce App Development",
-      "Custom Software & AI Integrations",
-      "Dedicated Support",
-    ],
-    popular: false,
-    custom: true,
-  },
+function planHasFeature(plan: (typeof PLANS)[number], keyword: string) {
+  return plan.features.some((f) => f.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+function revisionLabel(plan: (typeof PLANS)[number]) {
+  const match = plan.features.find((f) => f.toLowerCase().includes("revision"));
+  return match || "—";
+}
+
+const COMPARE_ROWS = [
+  { label: "Website", keyword: "website" },
+  { label: "Mobile Responsive Design", keyword: "responsive" },
+  { label: "Basic SEO Setup", keyword: "seo" },
+  { label: "Contact Form Integration", keyword: "contact form" },
+  { label: "UGC Videos & Photos", keyword: "ugc" },
+  { label: "Product Photography", keyword: "photography" },
+  { label: "3D Property Tour", keyword: "3d" },
+  { label: "Social Media Presence", keyword: "social" },
+  { label: "Revisions", keyword: "", revisionRow: true },
 ];
 
 const CAPABILITIES = [
@@ -171,9 +131,34 @@ const ADDONS = [
   },
 ];
 
+const SERVICE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Web Development, Content, Automation & AI Solutions",
+  provider: {
+    "@type": "Organization",
+    name: "VisionXAI",
+  },
+  areaServed: "IN",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "VisionXAI Packages",
+    itemListElement: PLANS.filter((p) => !p.custom).map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      price: plan.price?.replace(/[₹,]/g, ""),
+      priceCurrency: "INR",
+    })),
+  },
+};
+
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSON_LD) }}
+      />
       <section className="page-hero services-hero">
         <div className="decor">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -275,6 +260,65 @@ export default function ServicesPage() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="section-head">
+            <div className="eyebrow">Compare Plans</div>
+            <h2>
+              See What&apos;s{" "}
+              <span className="accent" style={{ color: "var(--primary-text)" }}>
+                Included.
+              </span>
+            </h2>
+            <p>
+              A side-by-side look at Essential, Growth and Premium — built
+              directly from each plan&apos;s actual feature list, so this
+              always matches the pricing above.
+            </p>
+          </div>
+          <div className="compare-table-wrap">
+            <table className="compare-table">
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  {COMPARE_PLANS.map((plan) => (
+                    <th scope="col" key={plan.name}>
+                      {plan.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARE_ROWS.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    {COMPARE_PLANS.map((plan) => (
+                      <td key={plan.name}>
+                        {row.revisionRow ? (
+                          revisionLabel(plan)
+                        ) : planHasFeature(plan, row.keyword) ? (
+                          <span className="compare-yes" aria-label="Included">
+                            <TickIcon size={15} />
+                          </span>
+                        ) : (
+                          <span className="compare-no" aria-hidden="true">
+                            —
+                          </span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="price-note" style={{ marginTop: "18px" }}>
+            Need something not on this list? That&apos;s exactly what the
+            Custom plan below is for.
+          </p>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="section-head">
             <div className="eyebrow">Custom &amp; Enterprise</div>
             <h2>
               Built for{" "}
@@ -352,7 +396,7 @@ export default function ServicesPage() {
               <p>Tell us about your project and we&apos;ll point you to the right package.</p>
             </div>
             <Link href="/contact" className="btn btn-primary">
-              Let&apos;s Talk →
+              Start a Project →
             </Link>
           </div>
         </div>

@@ -18,7 +18,7 @@ import {
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ];
@@ -49,7 +49,7 @@ export default function Header() {
         </nav>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <Link href="/contact" className="btn nav-cta">
-            Let&apos;s Connect →
+            Start a Project →
           </Link>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
@@ -86,7 +86,7 @@ export default function Header() {
                   className="btn btn-primary"
                   onClick={() => setOpen(false)}
                 >
-                  Let&apos;s Connect →
+                  Start a Project →
                 </Link>
               </SheetFooter>
             </SheetContent>
