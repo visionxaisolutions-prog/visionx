@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { UserIcon } from "@/components/icons";
+import GlowCard from "@/components/GlowCard";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -11,12 +12,12 @@ export const metadata: Metadata = {
 const TEAM = [
   {
     name: "Shashank CS",
-    role: "AI Engineer at QPi AI",
+    role: "Co-Founder, VisionXAI",
     bio: "AI Engineer with a passion for building intelligent systems that solve real world problems. Focused on innovation, automation and the future of AI-driven solutions.",
   },
   {
     name: "Pavan S",
-    role: "Full Stack Intern",
+    role: "Co-Founder, VisionXAI",
     bio: "Computer Science student passionate about web development and security. Always learning, building and securing the digital world.",
   },
 ];
@@ -46,10 +47,9 @@ export default function AboutPage() {
               opportunities.
             </p>
             <div className="quote-block">
-              <div className="mark">&ldquo;</div>
               <p>
-                We don&apos;t just build websites, we connect your{" "}
-                <span className="accent">mind to media.</span>
+                &ldquo;We don&apos;t just build websites, we connect your{" "}
+                <span className="accent">mind to media.&rdquo;</span>
               </p>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function AboutPage() {
             </div>
 
             {TEAM.map((member) => (
-              <div className="team-card reveal" key={member.name}>
+              <GlowCard className="team-card reveal" key={member.name}>
                 <div className="avatar">
                   <UserIcon />
                 </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                   <div className="role">{member.role}</div>
                   <p className="bio">{member.bio}</p>
                 </div>
-              </div>
+              </GlowCard>
             ))}
           </div>
         </div>

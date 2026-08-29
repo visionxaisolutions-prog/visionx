@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GlowCard from "@/components/GlowCard";
 
 const ICON_PROPS = {
   width: 22,
@@ -9,6 +10,7 @@ const ICON_PROPS = {
   strokeWidth: 2,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
+  "aria-hidden": "true" as const,
 };
 
 const FEATURES = [
@@ -60,49 +62,117 @@ const FEATURES = [
   },
 ];
 
+const PROCESS = [
+  {
+    title: "Discover",
+    description:
+      "We learn about your brand, goals and audience to shape the right strategy.",
+  },
+  {
+    title: "Design",
+    description:
+      "We craft a look and feel that reflects your brand and connects with users.",
+  },
+  {
+    title: "Build",
+    description:
+      "We develop a fast, responsive and secure website tailored to your needs.",
+  },
+  {
+    title: "Launch & Grow",
+    description:
+      "We ship your project and stay on hand as your business grows.",
+  },
+];
+
 export default function Home() {
   return (
-    <section className="hero">
-      <div className="hero-globe-wrap">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/globe-hero.svg" alt="" aria-hidden="true" />
-      </div>
-      <div className="hero-wave">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/hero-wave.svg" alt="" aria-hidden="true" />
-      </div>
+    <>
+      <section className="hero">
+        <div className="hero-map-wrap">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/world-map-india.svg" alt="" aria-hidden="true" />
+        </div>
+        <div className="hero-wave">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero-wave.svg" alt="" aria-hidden="true" />
+        </div>
 
-      <div className="wrap">
-        <div className="hero-content">
-          <div className="eyebrow">Welcome to VisionXAI</div>
-          <h1 className="headline">
-            We Turn Ideas Into <span className="accent">Digital</span>{" "}
-            Experiences
-          </h1>
-          <p className="sub">
-            We are a creative digital studio crafting websites, brands, and
-            digital content that connect, engage and grow.
-          </p>
-          <div className="hero-ctas">
-            <Link href="/services" className="btn btn-primary">
-              Our Services →
-            </Link>
-            <Link href="/work" className="btn btn-outline">
-              View Our Work
+        <div className="wrap">
+          <div className="hero-content">
+            <div className="eyebrow">Welcome to VisionXAI</div>
+            <h1 className="headline">
+              We Turn Ideas Into <span className="accent">Digital</span>{" "}
+              Experiences
+            </h1>
+            <p className="sub">
+              We are a creative digital studio crafting websites, brands, and
+              digital content that connect, engage and grow.
+            </p>
+            <div className="hero-ctas">
+              <Link href="/services" className="btn btn-primary">
+                Our Services →
+              </Link>
+              <Link href="/work" className="btn btn-outline">
+                View Our Work
+              </Link>
+            </div>
+          </div>
+
+          <div className="feature-card">
+            {FEATURES.map((feature) => (
+              <GlowCard className="feature" key={feature.title}>
+                <div className="icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </GlowCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-band">
+        <div className="wrap">
+          <div className="section-head reveal">
+            <div className="eyebrow">How We Work</div>
+            <h2>
+              From Idea to{" "}
+              <span className="accent" style={{ color: "var(--primary-text)" }}>
+                Launch
+              </span>
+            </h2>
+            <p>
+              A simple, transparent process so you always know what&apos;s
+              next.
+            </p>
+          </div>
+          <div className="process-grid stagger">
+            {PROCESS.map((step, i) => (
+              <div className="process-step reveal" key={step.title}>
+                <div className="process-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="cta-band reveal">
+            <div>
+              <h3>Ready to start your project?</h3>
+              <p>Tell us about your idea and we&apos;ll help bring it to life.</p>
+            </div>
+            <Link href="/contact" className="btn btn-primary">
+              Let&apos;s Talk →
             </Link>
           </div>
         </div>
-
-        <div className="feature-card">
-          {FEATURES.map((feature) => (
-            <div className="feature" key={feature.title}>
-              <div className="icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

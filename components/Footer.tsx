@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { EmailIcon, InstagramIcon, WhatsAppIcon } from "@/components/icons";
 
 export default function Footer() {
@@ -26,6 +27,11 @@ export default function Footer() {
             <EmailIcon />
           </a>
         </div>
+      </div>
+      <div className="wrap footer-legal">
+        <Link href="/terms">Terms &amp; Conditions</Link>
+        <Link href="/privacy">Privacy Policy</Link>
+        <Link href="/cookies">Cookie Policy</Link>
       </div>
     </footer>
   );

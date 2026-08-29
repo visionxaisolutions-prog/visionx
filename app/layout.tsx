@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -22,13 +23,30 @@ const inter = Inter({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
+const SITE_DESCRIPTION =
+  "VisionXAI is a Bengaluru-based creative digital studio building websites, brands and digital content that connect, engage and grow.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s — VisionXAI",
     default: "VisionXAI — Mind to Media",
   },
-  description:
-    "VisionXAI is a Bengaluru-based creative digital studio building websites, brands and digital content that connect, engage and grow.",
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: "VisionXAI — Mind to Media",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: "VisionXAI",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VisionXAI — Mind to Media",
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -43,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <CookieConsent />
         <ScrollReveal />
         <Toaster position="top-center" />
       </body>

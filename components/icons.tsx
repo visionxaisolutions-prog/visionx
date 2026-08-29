@@ -8,6 +8,7 @@ const base = {
   strokeWidth: 2,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
+  "aria-hidden": "true" as const,
 };
 
 export function InstagramIcon({ size = 18 }: IconProps) {
@@ -47,6 +48,16 @@ export function UserIcon({ size = 30 }: IconProps) {
   );
 }
 
+export function CartIcon({ size = 18 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <circle cx="9" cy="21" r="1" fill="currentColor" stroke="none" />
+      <circle cx="20" cy="21" r="1" fill="currentColor" stroke="none" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+    </svg>
+  );
+}
+
 export function TickIcon({ size = 16 }: IconProps) {
   return (
     <svg
@@ -58,6 +69,7 @@ export function TickIcon({ size = 16 }: IconProps) {
       strokeWidth={2.6}
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       <polyline points="20 6 9 17 4 12" />
     </svg>

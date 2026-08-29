@@ -1,34 +1,32 @@
 "use client";
 
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { toast } from "sonner";
 
+import { contactFieldsSchema, type ContactFields } from "@/lib/contact-schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(2, "Please enter your name."),
-  email: z.string().trim().min(1, "Please enter your email.").email("Enter a valid email address."),
-  message: z
-    .string()
-    .trim()
-    .min(10, "Tell us a little more — at least 10 characters."),
-});
-
-type ContactValues = z.infer<typeof contactSchema>;
-
 export default function ContactForm({
   initialPlan,
 }: {
   initialPlan?: string;
 }) {
-  const form = useForm<ContactValues>({
-    resolver: zodResolver(contactSchema),
+  // Honeypot: kept outside react-hook-form's managed fields on purpose, so it
+  // never shows up in validated values and can't accidentally get submitted
+  // as real form content.
+  const [honeypot, setHoneypot] = useState("");
+  const nameErrorId = useId();
+  const emailErrorId = useId();
+  const messageErrorId = useId();
+
+  const form = useForm<ContactFields>({
+    resolver: zodResolver(contactFieldsSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -38,12 +36,12 @@ export default function ContactForm({
     },
   });
 
-  async function onSubmit(values: ContactValues) {
+  async function onSubmit(values: ContactFields) {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, plan: initialPlan }),
+        body: JSON.stringify({ ...values, plan: initialPlan, company: honeypot }),
       });
 
       if (!res.ok) {
@@ -117,20 +115,43 @@ export default function ContactForm({
       </div>
       <div className="form-title">Send Us a Message</div>
       {initialPlan && (
-        <Badge className="mb-4 bg-(--primary-soft) text-(--accent-dark)">
+        <Badge className="mb-4 bg-(--primary-soft) text-(--primary-text)">
           Enquiring about the <strong>{initialPlan}</strong> plan
         </Badge>
       )}
+
+      {/* Honeypot — hidden from sighted users and screen readers alike, never
+          tab-focusable. Real visitors will never fill it in. */}
+      <input
+        type="text"
+        name="company"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
+
       <FieldGroup>
         <Field data-invalid={!!form.formState.errors.name}>
           <FieldLabel htmlFor="contactName">Your Name</FieldLabel>
           <Input
             id="contactName"
             placeholder="Jane Doe"
+            autoComplete="name"
             aria-invalid={!!form.formState.errors.name}
+            aria-describedby={form.formState.errors.name ? nameErrorId : undefined}
             {...form.register("name")}
           />
-          <FieldError errors={[form.formState.errors.name]} />
+          <FieldError id={nameErrorId} errors={[form.formState.errors.name]} />
         </Field>
         <Field data-invalid={!!form.formState.errors.email}>
           <FieldLabel htmlFor="contactEmail">Your Email</FieldLabel>
@@ -138,10 +159,12 @@ export default function ContactForm({
             id="contactEmail"
             type="email"
             placeholder="jane@company.com"
+            autoComplete="email"
             aria-invalid={!!form.formState.errors.email}
+            aria-describedby={form.formState.errors.email ? emailErrorId : undefined}
             {...form.register("email")}
           />
-          <FieldError errors={[form.formState.errors.email]} />
+          <FieldError id={emailErrorId} errors={[form.formState.errors.email]} />
         </Field>
         <Field data-invalid={!!form.formState.errors.message}>
           <FieldLabel htmlFor="contactMessage">Your Message</FieldLabel>
@@ -150,9 +173,12 @@ export default function ContactForm({
             placeholder="Tell us a bit about your project..."
             rows={5}
             aria-invalid={!!form.formState.errors.message}
+            aria-describedby={
+              form.formState.errors.message ? messageErrorId : undefined
+            }
             {...form.register("message")}
           />
-          <FieldError errors={[form.formState.errors.message]} />
+          <FieldError id={messageErrorId} errors={[form.formState.errors.message]} />
         </Field>
       </FieldGroup>
       <Button
@@ -170,6 +196,7 @@ export default function ContactForm({
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <line x1="22" y1="2" x2="11" y2="13" />
           <polygon points="22 2 15 22 11 13 2 9 22 2" />

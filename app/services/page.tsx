@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TickIcon } from "@/components/icons";
+import { TickIcon, WhatsAppIcon, CartIcon } from "@/components/icons";
+import GlowCard from "@/components/GlowCard";
 
 export const metadata: Metadata = {
   title: "Services & Pricing",
   description:
-    "Website, photography and videography packages from VisionXAI — Essential, Growth and Premium plans for every stage of growth.",
+    "Website, photography and videography packages from VisionXAI — Essential, Growth, Premium and Custom Enterprise plans for every stage of growth.",
 };
 
-const PLANS = [
+type Plan = {
+  name: string;
+  features: string[];
+  oldPrice?: string;
+  discount?: string;
+  price?: string;
+  popular: boolean;
+  custom?: boolean;
+};
+
+const PLANS: Plan[] = [
   {
     name: "Essential",
     features: [
@@ -51,6 +62,47 @@ const PLANS = [
     price: "₹49,999",
     popular: true,
   },
+  {
+    name: "Custom",
+    features: [
+      "Fully Tailored Scope",
+      "WhatsApp Business Automation",
+      "E-Commerce App Development",
+      "Custom Software & AI Integrations",
+      "Dedicated Support",
+    ],
+    popular: false,
+    custom: true,
+  },
+];
+
+const CAPABILITIES = [
+  {
+    title: "WhatsApp Automation",
+    icon: <WhatsAppIcon size={26} />,
+    description:
+      "Turn WhatsApp into a 24/7 sales and support channel. We set up automated flows so enquiries get answered instantly and orders get confirmed automatically — your team only steps in when a human touch is actually needed.",
+    features: [
+      "Automated replies & FAQ handling",
+      "Order confirmations & shipping updates",
+      "Product catalog inside WhatsApp",
+      "Broadcast campaigns to your customer list",
+      "WhatsApp Business API setup",
+    ],
+  },
+  {
+    title: "E-Commerce App Development",
+    icon: <CartIcon size={26} />,
+    description:
+      "A full online store built to actually sell — not just a catalog. Product listings, secure checkout and order management, built as a website or app depending on what your business needs.",
+    features: [
+      "Product catalog & inventory management",
+      "Secure payment gateway integration",
+      "Order tracking & admin dashboard",
+      "Web or native mobile app",
+      "Built to scale with your product range",
+    ],
+  },
 ];
 
 const ADDON_ICON_PROPS = {
@@ -62,6 +114,7 @@ const ADDON_ICON_PROPS = {
   strokeWidth: 2,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
+  "aria-hidden": "true" as const,
 };
 
 const ADDONS = [
@@ -145,8 +198,8 @@ export default function ServicesPage() {
         <div className="wrap">
           <div className="pricing-grid stagger">
             {PLANS.map((plan) => (
-              <div
-                className={`price-card reveal${plan.popular ? " popular" : ""}`}
+              <GlowCard
+                className={`price-card reveal${plan.popular ? " popular" : ""}${plan.custom ? " custom" : ""}`}
                 key={plan.name}
               >
                 {plan.popular && (
@@ -166,23 +219,38 @@ export default function ServicesPage() {
                   ))}
                 </ul>
                 <div className="price-row">
-                  <span className="price-old">{plan.oldPrice}</span>
-                  <span className="discount-badge">{plan.discount}</span>
-                  <div className="price-new">{plan.price}</div>
-                  <div className="price-unit">/ one-time</div>
+                  {plan.custom ? (
+                    <>
+                      <div className="custom-price">Let&apos;s Talk</div>
+                      <p className="custom-price-note">
+                        Enterprise-grade &amp; fully scoped to what you need —
+                        tell us what you&apos;re building and we&apos;ll
+                        quote it.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <span className="price-old">{plan.oldPrice}</span>
+                      <span className="discount-badge">{plan.discount}</span>
+                      <div className="price-new">{plan.price}</div>
+                      <div className="price-unit">/ one-time</div>
+                    </>
+                  )}
                   <Link
                     href={`/contact?plan=${encodeURIComponent(plan.name)}`}
                     className={`btn ${plan.popular ? "btn-primary" : "btn-outline"}`}
                   >
-                    Choose Plan
+                    {plan.custom ? "Contact Us" : "Choose Plan"}
                   </Link>
                 </div>
-              </div>
+              </GlowCard>
             ))}
           </div>
 
           <p className="price-note">
-            * All plans are one-time payment with no hidden charges.
+            * Essential, Growth and Premium are one-time payments with no
+            hidden charges. Custom projects are scoped and quoted
+            individually.
             <span className="gst">
               <svg
                 width="22"
@@ -193,6 +261,7 @@ export default function ServicesPage() {
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
                 <path d="M9 12l2 2 4-4" />
@@ -203,13 +272,56 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section addons" style={{ paddingTop: 0 }}>
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="section-head">
+            <div className="eyebrow">Custom &amp; Enterprise</div>
+            <h2>
+              Built for{" "}
+              <span className="accent" style={{ color: "var(--primary-text)" }}>
+                Bigger Needs.
+              </span>
+            </h2>
+            <p>
+              Two capabilities we get asked for most under the Custom plan —
+              here&apos;s what&apos;s actually included.
+            </p>
+          </div>
+          <div className="capability-grid stagger">
+            {CAPABILITIES.map((capability) => (
+              <GlowCard className="capability-card reveal" key={capability.title}>
+                <div className="icon">{capability.icon}</div>
+                <h3>{capability.title}</h3>
+                <p>{capability.description}</p>
+                <ul>
+                  {capability.features.map((feature) => (
+                    <li key={feature}>
+                      <span className="tick">
+                        <TickIcon />
+                      </span>{" "}
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={`/contact?plan=${encodeURIComponent(capability.title)}`}
+                  className="btn btn-outline"
+                >
+                  Enquire About This →
+                </Link>
+              </GlowCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section addons section-band" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="section-head">
             <div className="eyebrow">Add-ons</div>
             <h2>
               Need Something{" "}
-              <span className="accent" style={{ color: "var(--primary)" }}>
+              <span className="accent" style={{ color: "var(--primary-text)" }}>
                 Extra?
               </span>
             </h2>
@@ -220,13 +332,13 @@ export default function ServicesPage() {
           </div>
           <div className="addon-grid stagger">
             {ADDONS.map((addon) => (
-              <div className="addon-chip reveal" key={addon.title}>
+              <GlowCard className="addon-chip reveal" key={addon.title}>
                 <div className="icon">{addon.icon}</div>
                 <div className="txt">
                   <strong>{addon.title}</strong>
                   <span>{addon.description}</span>
                 </div>
-              </div>
+              </GlowCard>
             ))}
           </div>
         </div>

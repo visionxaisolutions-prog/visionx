@@ -59,7 +59,7 @@ export default function Header() {
                 className="menu-toggle"
                 aria-label="Toggle menu"
               >
-                <Menu />
+                <Menu aria-hidden="true" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
