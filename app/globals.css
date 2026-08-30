@@ -738,7 +738,21 @@ footer{margin-top:64px; border-top:1px solid var(--gray-light); padding:26px 0; 
 .price-note .gst{display:inline-flex; align-items:center; gap:6px; margin-left:14px;}
 
 /* Plan comparison table */
-.compare-table-wrap{overflow-x:auto; border:1px solid var(--gray-light); border-radius:18px; background:var(--surface);}
+.compare-scroll-hint{display:none; font-size:12.5px; font-weight:700; color:var(--gray-med); text-align:center; margin:0 0 10px;}
+
+.compare-table-wrap{
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  border:1px solid var(--gray-light); border-radius:18px; background:var(--surface);
+  background-image:
+    linear-gradient(to right, var(--surface), transparent 24px),
+    linear-gradient(to left, var(--surface), transparent 24px);
+  background-position:left, right; background-repeat:no-repeat;
+  background-size:24px 100%; background-attachment:local, local;
+}
+
+@media (max-width:760px){
+  .compare-scroll-hint{display:block;}
+}
 
 .compare-table{width:100%; border-collapse:collapse; min-width:520px;}
 

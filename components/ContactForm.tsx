@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldGroup, FieldLabel, FieldError } from "@/components/ui/field";
 
 export default function ContactForm({
@@ -30,6 +31,7 @@ export default function ContactForm({
   const emailErrorId = useId();
   const serviceErrorId = useId();
   const messageErrorId = useId();
+  const consentErrorId = useId();
 
   const form = useForm<ContactFields>({
     resolver: zodResolver(contactFieldsSchema),
@@ -40,6 +42,7 @@ export default function ContactForm({
       business: "",
       phone: "",
       budget: "",
+      consent: false,
       message: initialPlan
         ? `Hi, I'm interested in the ${initialPlan} plan. `
         : "",
@@ -69,6 +72,7 @@ export default function ContactForm({
         business: "",
         phone: "",
         budget: "",
+        consent: false,
         message: initialPlan
           ? `Hi, I'm interested in the ${initialPlan} plan. `
           : "",
@@ -257,6 +261,33 @@ export default function ContactForm({
             {...form.register("message")}
           />
           <FieldError id={messageErrorId} errors={[form.formState.errors.message]} />
+        </Field>
+        <Field
+          orientation="horizontal"
+          data-invalid={!!form.formState.errors.consent}
+        >
+          <Checkbox
+            id="contactConsent"
+            checked={form.watch("consent")}
+            onCheckedChange={(checked) =>
+              form.setValue("consent", checked === true, {
+                shouldValidate: true,
+              })
+            }
+            aria-invalid={!!form.formState.errors.consent}
+            aria-describedby={
+              form.formState.errors.consent ? consentErrorId : undefined
+            }
+          />
+          <FieldLabel htmlFor="contactConsent" className="font-normal">
+            I agree that VisionXAI can use the details above to respond to my
+            enquiry, as described in the{" "}
+            <a href="/privacy" target="_blank" rel="noopener">
+              Privacy Policy
+            </a>
+            .
+          </FieldLabel>
+          <FieldError id={consentErrorId} errors={[form.formState.errors.consent]} />
         </Field>
       </FieldGroup>
       <Button

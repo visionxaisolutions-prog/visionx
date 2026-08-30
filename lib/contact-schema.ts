@@ -44,6 +44,9 @@ export const contactFieldsSchema = z.object({
   business: z.string().trim().max(150, "That's too long.").optional().or(z.literal("")),
   phone: z.string().trim().max(30, "That's too long.").optional().or(z.literal("")),
   budget: z.enum(BUDGET_OPTIONS).optional().or(z.literal("")),
+  consent: z.boolean().refine((v) => v === true, {
+    message: "Please confirm you agree to how we handle your data.",
+  }),
 });
 
 export type ContactFields = z.infer<typeof contactFieldsSchema>;

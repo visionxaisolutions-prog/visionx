@@ -273,6 +273,9 @@ export default function ServicesPage() {
               always matches the pricing above.
             </p>
           </div>
+          <p className="compare-scroll-hint" aria-hidden="true">
+            ← Swipe to compare →
+          </p>
           <div className="compare-table-wrap">
             <table className="compare-table">
               <thead>
