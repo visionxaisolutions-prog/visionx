@@ -8,6 +8,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { SITE_URL } from "@/lib/site";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,7 +24,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
 const SITE_DESCRIPTION =
   "VisionXAI is a digital growth and technology partner — we help businesses build their digital presence, grow through social media and automate their operations.";
 const DEFAULT_TITLE = "VisionXAI | Social Media, Websites & AI Solutions";

@@ -2,8 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { TickIcon } from "@/components/icons";
 import type { SolutionPage } from "@/lib/data/solutions";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
+import { SITE_URL } from "@/lib/site";
 
 const SERVICE_JSON_LD_TYPE = "Service" as const;
 

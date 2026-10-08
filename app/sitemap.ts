@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PROJECTS } from "@/lib/data/projects";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
+import { SITE_URL } from "@/lib/site";
 
 const ROUTES: { path: string; priority: number }[] = [
   { path: "", priority: 1 },

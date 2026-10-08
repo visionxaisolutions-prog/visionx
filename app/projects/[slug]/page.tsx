@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PROJECTS } from "@/lib/data/projects";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return PROJECTS.map((project) => ({ slug: project.slug }));
@@ -21,8 +22,6 @@ export async function generateMetadata({
     alternates: { canonical: `/projects/${project.slug}` },
   };
 }
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
 
 export default async function ProjectDetailPage({
   params,
