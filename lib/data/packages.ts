@@ -1,64 +1,69 @@
 export type Plan = {
   name: string;
+  duration: string;
   features: string[];
-  oldPrice?: string;
-  discount?: string;
-  price?: string;
   popular: boolean;
   custom?: boolean;
 };
 
+// No price figures yet — pricing is still being finalized, so plans show
+// scope/duration and route to a quote via the contact form instead of a ₹
+// figure. Do not add placeholder numbers here.
 export const PLANS: Plan[] = [
   {
     name: "Essential",
+    duration: "30 Days",
     features: [
-      "Website",
-      "Mobile Responsive Design",
-      "Basic SEO Setup",
-      "Contact Form Integration",
-      "1 Revision Round",
+      "10 short-form videos",
+      "Social media management",
+      "Content calendar",
+      "Captions & hashtags",
+      "Publishing & scheduling",
+      "Monthly performance reporting",
     ],
-    oldPrice: "₹16,400",
-    discount: "27% OFF",
-    price: "₹11,999",
     popular: false,
   },
   {
     name: "Growth",
+    duration: "100 Days",
     features: [
-      "Website",
-      "UGC Videos & Photos",
-      "Mobile Responsive Design",
-      "Basic SEO Setup",
-      "2 Revision Rounds",
+      "25 short-form videos",
+      "Social media management",
+      "Content strategy & calendar",
+      "Creative posts",
+      "Google Business Profile support",
+      "Basic SEO",
+      "Landing page or basic website, where appropriate",
+      "Performance reporting",
     ],
-    oldPrice: "₹29,800",
-    discount: "33% OFF",
-    price: "₹19,999",
-    popular: false,
-  },
-  {
-    name: "Premium",
-    features: [
-      "Website",
-      "1 Free Service (Your Choice)",
-      "3D Property Tour",
-      "Product Photography",
-      "UGC Videos / Social Media Presence",
-    ],
-    oldPrice: "₹83,300",
-    discount: "40% OFF",
-    price: "₹49,999",
     popular: true,
   },
   {
-    name: "Custom",
+    name: "Business",
+    duration: "6 Months",
     features: [
-      "Fully Tailored Scope",
-      "WhatsApp Business Automation",
-      "E-Commerce App Development",
-      "Custom Software & AI Integrations",
-      "Dedicated Support",
+      "48 short-form videos",
+      "Full social media management",
+      "Instagram, Facebook & YouTube Shorts, where appropriate",
+      "Creative design",
+      "Google Business Profile",
+      "Website",
+      "Basic SEO",
+      "WhatsApp integration",
+      "Lead-generation setup",
+      "Performance reporting",
+    ],
+    popular: false,
+  },
+  {
+    name: "Custom",
+    duration: "Scoped to your project",
+    features: [
+      "Fully tailored scope",
+      "WhatsApp Business automation",
+      "E-commerce app development",
+      "Custom software & AI integrations",
+      "Dedicated support",
     ],
     popular: false,
     custom: true,

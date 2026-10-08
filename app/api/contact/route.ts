@@ -53,7 +53,8 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
-  const { name, email, service, message, business, phone, budget } = parsed.data;
+  const { name, email, service, message, business, phone, website, budget } =
+    parsed.data;
 
   const rawPlan = "plan" in body ? body.plan : undefined;
   const planName =
@@ -90,13 +91,16 @@ export async function POST(req: NextRequest) {
         planName ? `\nPlan: ${planName}` : ""
       }${business ? `\nBusiness: ${business}` : ""}${
         phone ? `\nPhone: ${phone}` : ""
-      }${budget ? `\nBudget: ${budget}` : ""}\n\nMessage:\n${message}`,
+      }${website ? `\nWebsite/Instagram: ${website}` : ""}${
+        budget ? `\nBudget: ${budget}` : ""
+      }\n\nMessage:\n${message}`,
       html: `<p><strong>Name:</strong> ${escapeHtml(name)}</p>
 <p><strong>Email:</strong> ${escapeHtml(email)}</p>
 <p><strong>Service:</strong> ${escapeHtml(service)}</p>
 ${planName ? `<p><strong>Plan:</strong> ${escapeHtml(planName)}</p>` : ""}
 ${business ? `<p><strong>Business:</strong> ${escapeHtml(business)}</p>` : ""}
 ${phone ? `<p><strong>Phone:</strong> ${escapeHtml(phone)}</p>` : ""}
+${website ? `<p><strong>Website/Instagram:</strong> ${escapeHtml(website)}</p>` : ""}
 ${budget ? `<p><strong>Budget:</strong> ${escapeHtml(budget)}</p>` : ""}
 <p><strong>Message:</strong></p>
 <p>${escapeHtml(message).replace(/\n/g, "<br/>")}</p>`,

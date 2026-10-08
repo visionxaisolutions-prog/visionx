@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
@@ -41,6 +41,7 @@ export default function ContactForm({
       service: undefined,
       business: "",
       phone: "",
+      website: "",
       budget: "",
       consent: false,
       message: initialPlan
@@ -48,6 +49,10 @@ export default function ContactForm({
         : "",
     },
   });
+
+  // useWatch subscribes to just this field, instead of form.watch() which
+  // re-renders the whole form and opts the component out of React Compiler.
+  const consent = useWatch({ control: form.control, name: "consent" });
 
   async function onSubmit(values: ContactFields) {
     try {
@@ -71,6 +76,7 @@ export default function ContactForm({
         service: undefined,
         business: "",
         phone: "",
+        website: "",
         budget: "",
         consent: false,
         message: initialPlan
@@ -230,6 +236,17 @@ export default function ContactForm({
             {...form.register("phone")}
           />
         </Field>
+        <Field data-invalid={!!form.formState.errors.website}>
+          <FieldLabel htmlFor="contactWebsite">
+            Website / Instagram <span className="optional-tag">(optional)</span>
+          </FieldLabel>
+          <Input
+            id="contactWebsite"
+            placeholder="yourbrand.com or @yourhandle"
+            autoComplete="url"
+            {...form.register("website")}
+          />
+        </Field>
         <Field data-invalid={!!form.formState.errors.budget}>
           <FieldLabel htmlFor="contactBudget">
             Budget <span className="optional-tag">(optional)</span>
@@ -268,7 +285,7 @@ export default function ContactForm({
         >
           <Checkbox
             id="contactConsent"
-            checked={form.watch("consent")}
+            checked={consent}
             onCheckedChange={(checked) =>
               form.setValue("consent", checked === true, {
                 shouldValidate: true,

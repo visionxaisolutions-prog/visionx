@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: { absolute: "Contact VisionXAI | Start Your Project" },
   description:
-    "Get in touch with VisionXAI — a Bengaluru-based creative digital studio for websites, photography and videography.",
+    "Get in touch with VisionXAI — social media, websites & e-commerce, AI & automation and custom technology, for businesses anywhere.",
   alternates: { canonical: "/contact" },
 };
 

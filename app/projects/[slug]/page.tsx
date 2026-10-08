@@ -38,7 +38,7 @@ export default async function ProjectDetailPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/projects` },
       {
         "@type": "ListItem",
         position: 3,
@@ -63,7 +63,7 @@ export default async function ProjectDetailPage({
             </h1>
             <p className="sub">{project.summary}</p>
             <div className="services-tags" style={{ marginTop: "16px" }}>
-              <span>{project.industry}</span>
+              {project.industry && <span>{project.industry}</span>}
               {project.services.map((s) => (
                 <span key={s}>{s}</span>
               ))}
@@ -78,41 +78,38 @@ export default async function ProjectDetailPage({
             <h2>Overview</h2>
             <p>{project.summary}</p>
 
-            {project.challenge && (
+            <h2>Objective</h2>
+            <p>{project.objective}</p>
+
+            <h2>Starting Point</h2>
+            <p>{project.startingPoint}</p>
+
+            <h2>What We Did</h2>
+            <ul>
+              {project.whatWeDid.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ul>
+
+            <h2>Content Delivered</h2>
+            <ul>
+              {project.contentDelivered.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ul>
+
+            <h2>Timeline</h2>
+            <p>{project.timeline}</p>
+
+            {project.reportedPerformance && (
               <>
-                <h2>The Challenge</h2>
-                <p>{project.challenge}</p>
+                <h2>Reported Performance</h2>
+                <p>{project.reportedPerformance}</p>
               </>
             )}
 
-            {project.approach && (
-              <>
-                <h2>The Approach</h2>
-                <p>{project.approach}</p>
-              </>
-            )}
-
-            {project.deliverables && project.deliverables.length > 0 && (
-              <>
-                <h2>What We&apos;ve Delivered</h2>
-                <ul>
-                  {project.deliverables.map((d) => (
-                    <li key={d}>{d}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-            {project.inProgress && project.inProgress.length > 0 && (
-              <>
-                <h2>Currently In Progress</h2>
-                <ul>
-                  {project.inProgress.map((d) => (
-                    <li key={d}>{d}</li>
-                  ))}
-                </ul>
-              </>
-            )}
+            <h2>Current Status</h2>
+            <p>{project.currentStatus}</p>
           </div>
         </div>
       </section>

@@ -5,7 +5,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
 
 const ROUTES: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
-  { path: "/services", priority: 0.9 },
+  { path: "/solutions", priority: 0.9 },
+  { path: "/social-media", priority: 0.8 },
+  { path: "/web-development", priority: 0.8 },
+  { path: "/ecommerce", priority: 0.8 },
+  { path: "/ai-automation", priority: 0.8 },
+  { path: "/custom-solutions", priority: 0.8 },
   { path: "/projects", priority: 0.7 },
   { path: "/about", priority: 0.7 },
   { path: "/contact", priority: 0.8 },

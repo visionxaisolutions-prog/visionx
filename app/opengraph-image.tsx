@@ -23,7 +23,7 @@ export default function OpengraphImage() {
           VISION<span style={{ color: "#A84200" }}>XAI</span>
         </div>
         <div style={{ fontSize: 34, color: "#4B4B4B", marginTop: 28 }}>
-          We Turn Ideas Into Digital Experiences
+          Mind to Media
         </div>
       </div>
     ),

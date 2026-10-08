@@ -12,26 +12,25 @@ export default function Footer() {
             </span>
             <small>— MIND TO MEDIA —</small>
           </div>
-          <p>Websites · Media · AI · Automation</p>
+          <p>Social Media · Websites &amp; E-commerce · AI &amp; Automation · Custom Technology</p>
         </div>
 
         <div className="footer-col">
           <h3>Explore</h3>
           <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/projects">Projects</Link>
+          <Link href="/solutions">Solutions</Link>
+          <Link href="/projects">Work</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </div>
 
         <div className="footer-col">
-          <h3>Services</h3>
-          <Link href="/services">Web Development</Link>
-          <Link href="/services">UGC &amp; Content</Link>
-          <Link href="/services">Photography</Link>
-          <Link href="/services">3D Experiences</Link>
-          <Link href="/services">Automation</Link>
-          <Link href="/services">AI Solutions</Link>
+          <h3>Solutions</h3>
+          <Link href="/social-media">Social Media</Link>
+          <Link href="/web-development">Web Development</Link>
+          <Link href="/ecommerce">E-commerce</Link>
+          <Link href="/ai-automation">AI &amp; Automation</Link>
+          <Link href="/custom-solutions">Custom Technology</Link>
         </div>
 
         <div className="footer-col">

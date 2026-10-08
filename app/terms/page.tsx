@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Terms and conditions for using the VisionXAI website and engaging our website, photography and videography services.",
+    "Terms and conditions for using the VisionXAI website and engaging our social media, website and automation services.",
   alternates: { canonical: "/terms" },
 };
 
@@ -36,12 +36,13 @@ export default function TermsPage() {
 
             <h2>2. About Our Services</h2>
             <p>
-              VisionXAI is a Bengaluru-based creative digital studio offering
-              website design and development, photography, videography and
-              related digital content services, as described on our{" "}
-              <a href="/services">Services</a> page. Package names, inclusions
-              and prices shown on the website are indicative and may be
-              adjusted based on the final scope discussed with you.
+              VisionXAI is a digital growth and technology partner offering
+              social media management, website and e-commerce development, AI
+              and automation solutions, and related digital services, as
+              described on our <a href="/solutions">Solutions</a> page.
+              Package names and inclusions shown on the website are indicative
+              and may be adjusted based on the final scope discussed with
+              you.
             </p>
 
             <h2>3. Getting Started</h2>
@@ -55,19 +56,22 @@ export default function TermsPage() {
 
             <h2>4. Pricing &amp; Payment</h2>
             <p>
-              Prices listed on the Services page are one-time charges,
-              inclusive of GST, unless stated otherwise at the time of
-              agreement. Payment terms (advance, milestones, or full payment)
-              will be confirmed with you before work begins. We do not
-              process payments directly on this website.
+              Pricing is confirmed with you directly once we understand the
+              scope of your project, and may be a one-time charge or a
+              recurring package fee depending on what you choose. GST is
+              included or added as applicable, as agreed at the time. Payment
+              terms (advance, milestones, or full payment) will be confirmed
+              with you before work begins. We do not process payments
+              directly on this website.
             </p>
 
             <h2>5. Revisions</h2>
             <p>
-              Each plan includes a set number of revision rounds as listed on
-              the Services page. Additional revisions beyond what&apos;s
-              included may be chargeable and will be discussed with you
-              beforehand.
+              Revision rounds for each package are confirmed as part of your
+              project agreement, as described on the{" "}
+              <a href="/solutions">Solutions</a> page. Additional revisions
+              beyond what&apos;s included may be chargeable and will be
+              discussed with you beforehand.
             </p>
 
             <h2>6. Intellectual Property</h2>

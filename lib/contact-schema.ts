@@ -43,6 +43,7 @@ export const contactFieldsSchema = z.object({
     .max(5000, "Message is too long — please keep it under 5000 characters."),
   business: z.string().trim().max(150, "That's too long.").optional().or(z.literal("")),
   phone: z.string().trim().max(30, "That's too long.").optional().or(z.literal("")),
+  website: z.string().trim().max(200, "That's too long.").optional().or(z.literal("")),
   budget: z.enum(BUDGET_OPTIONS).optional().or(z.literal("")),
   consent: z.boolean().refine((v) => v === true, {
     message: "Please confirm you agree to how we handle your data.",

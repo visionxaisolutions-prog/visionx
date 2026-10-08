@@ -25,7 +25,8 @@ const inter = Inter({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://visionxai.com";
 const SITE_DESCRIPTION =
-  "VisionXAI is a Bengaluru-based creative digital studio building websites, brands and digital content that connect, engage and grow.";
+  "VisionXAI is a digital growth and technology partner — we help businesses build their digital presence, grow through social media and automate their operations.";
+const DEFAULT_TITLE = "VisionXAI | Social Media, Websites & AI Solutions";
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
@@ -38,18 +39,25 @@ const ORGANIZATION_JSON_LD = {
   ],
 };
 
+const WEBSITE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "VisionXAI",
+  url: SITE_URL,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     template: "%s — VisionXAI",
-    default: "VisionXAI — Mind to Media",
+    default: DEFAULT_TITLE,
   },
   description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "VisionXAI — Mind to Media",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
     url: "/",
     siteName: "VisionXAI",
@@ -58,7 +66,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VisionXAI — Mind to Media",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
   },
 };
@@ -74,6 +82,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
         />
         <Header />
         <main>{children}</main>

@@ -4,9 +4,9 @@ import GlowCard from "@/components/GlowCard";
 import { PROJECTS } from "@/lib/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Work",
   description:
-    "Brands VisionXAI is currently working with, across social media, WhatsApp automation, content and web development.",
+    "Real clients VisionXAI is currently working with, across social media, WhatsApp automation, content and web development.",
   alternates: { canonical: "/projects" },
 };
 
@@ -20,10 +20,9 @@ export default function ProjectsPage() {
         </div>
         <div className="wrap">
           <div className="page-hero-content">
-            <div className="eyebrow">Projects</div>
+            <div className="eyebrow">Work</div>
             <h1 className="headline">
-              Projects, Experiences{" "}
-              <span className="accent">&amp; Experiments.</span>
+              Real Clients. <span className="accent">Real Work.</span>
             </h1>
             <p className="sub">
               Brands we&apos;re currently working with.
@@ -39,13 +38,18 @@ export default function ProjectsPage() {
               <GlowCard className="project-card reveal" key={project.slug}>
                 <span className="status-badge">{project.status}</span>
                 <h3>{project.title}</h3>
-                <div className="industry">{project.industry}</div>
+                {project.industry && (
+                  <div className="industry">{project.industry}</div>
+                )}
                 <div className="services-tags">
                   {project.services.map((s) => (
                     <span key={s}>{s}</span>
                   ))}
                 </div>
                 <p className="summary">{project.summary}</p>
+                {project.reportedPerformance && (
+                  <p className="result-metric">{project.reportedPerformance}</p>
+                )}
                 <Link href={`/projects/${project.slug}`} className="view-link">
                   View Case Study →
                 </Link>

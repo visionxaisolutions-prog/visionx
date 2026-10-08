@@ -5,19 +5,24 @@ export type Faq = {
 
 export const FAQS: Faq[] = [
   {
-    question: "How long does a website take?",
+    question: "What's included in the Essential, Growth and Business packages?",
     answer:
-      "It depends on the plan and scope — we'll confirm a firm delivery date once we've scoped your project together.",
+      "Each package lists its exact deliverables on the Solutions page — Essential is a 30-day social media package, Growth is 100 days and adds a basic website, and Business is a 6-month package with full social management plus a website. Custom projects are scoped individually.",
   },
   {
-    question: "What is included in the website packages?",
+    question: "How much do the packages cost?",
     answer:
-      "Each plan lists its exact deliverables on the Services page — Essential covers a responsive website with basic SEO and a contact form, Growth and Premium add content, photography and additional revisions. Custom projects are scoped individually.",
+      "Pricing depends on scope and is confirmed before you commit to anything — reach out and we'll quote your package based on what you need.",
+  },
+  {
+    question: "How long does a website take?",
+    answer:
+      "It depends on the scope — we'll confirm a firm delivery date once we've scoped your project together.",
   },
   {
     question: "How many revisions are included?",
     answer:
-      "Essential includes 1 revision round and Growth includes 2. Premium and Custom projects have revisions scoped as part of the project agreement.",
+      "Revision rounds depend on the package and are confirmed as part of your project agreement, rather than left open-ended.",
   },
   {
     question: "Can I upgrade my package later?",
@@ -30,9 +35,9 @@ export const FAQS: Faq[] = [
       "Let us know what you already have (or don't) when you reach out, and we'll confirm exactly what's covered for your project.",
   },
   {
-    question: "Do you provide maintenance?",
+    question: "Do you provide website maintenance?",
     answer:
-      "Ongoing website maintenance is available as an add-on — see the Add-ons section on our Services page.",
+      "Ongoing website maintenance is available as an add-on — see the Add-ons section on our Solutions page.",
   },
   {
     question: "Do you work with businesses outside Bengaluru?",
@@ -42,17 +47,12 @@ export const FAQS: Faq[] = [
   {
     question: "Can I request custom functionality?",
     answer:
-      "Yes — that's exactly what our Custom plan is for. Tell us what you're building and we'll scope it.",
+      "Yes — that's exactly what our Custom package is for. Tell us what you're building and we'll scope it.",
   },
   {
-    question: "Who owns the website?",
+    question: "Who owns the website once it's built?",
     answer:
       "Ownership of the final deliverables transfers to you once payment is received in full, as outlined in our Terms & Conditions.",
-  },
-  {
-    question: "Do you provide GST invoices?",
-    answer:
-      "All listed prices already include GST — for specific invoicing needs, mention it when you reach out.",
   },
   {
     question: "How do I start?",
